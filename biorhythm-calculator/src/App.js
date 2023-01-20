@@ -1,6 +1,6 @@
 import { IonApp, IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonList } from '@ionic/react';
 import { useState } from 'react';
-import ByorhytmCard from './components/BiorhytmCard';
+import BiorhytmCard from './components/BiorhytmCard';
 import { useStoredState } from './hooks/useStoredState'
 
 function App() {
@@ -16,6 +16,8 @@ function App() {
   const targetDatePlaceholder = "Your target date ..."
   const targetDateLabel = "Target date"
 
+  const days = 15;
+
   return (
     <IonApp>
       <IonHeader>
@@ -26,7 +28,7 @@ function App() {
       <IonContent className="ion-padding">
 
         {Boolean(birthDate) && (
-            <ByorhytmCard birthDate={birthDate} targetDate={targetDate}/>
+            <BiorhytmCard birthDate={birthDate} targetDate={targetDate} range={days}/>
         )}
 
         <IonList>
@@ -40,14 +42,6 @@ function App() {
             <IonInput type="date" placeHolder={targetDatePlaceholder} value={targetDate} onIonChange={(event) => setTargetDate(event.detail.value)} />
           </IonItem> 
         </IonList>
-
-
-        
-        <ul>
-          <li>{birthDateLabel} : {birthDate}</li>
-          <li>{targetDateLabel} : {targetDate}</li>
-        </ul>
-
       </IonContent>
     </IonApp>
   );

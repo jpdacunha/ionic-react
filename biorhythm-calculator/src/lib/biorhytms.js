@@ -8,6 +8,24 @@ export function calculateBiorhytms(birthDate, targetDate) {
     }
 }
 
+export function calculateBiorhytmsSeries(birthDate, centralDate, range) {
+
+    const series = [];
+
+    const centralDay = dayjs(centralDate);
+
+    for (let diff = -range; diff <= range; diff++) {
+
+        const targetDay = centralDay.add(diff, 'day');
+        const bioRhytms = calculateBiorhytms(birthDate, targetDay);
+        series.push({date: targetDay.format('D MMM'), ...bioRhytms});
+
+    }
+
+    return series;
+
+} 
+
 function calculateP(birthDate, targetDate) {
     return calculate(birthDate, targetDate, 23);
 }
